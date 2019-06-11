@@ -1,19 +1,18 @@
 #include <NewPing.h>
+#include "motor.h"
 
+#define SONAR_NUM 5             // Number of sensors.
+#define MAX_DISTANCE 400        // Maximum distance (in cm) to ping.
 
-#define trigPinBack 53    // Trigger Pin for sensor # 1
-#define trigPinRight 51    // Trigger Pin for sensor # 2
-#define trigPinFront 49    // Trigger Pin for sensor # 3
-#define trigPinLeft 47    // Trigger Pin for sensor # 4
-#define trigPinTop 45    // Trigger Pin for sensor # 5
+NewPing sonar[SONAR_NUM] = {    // Sensor object array.
+  // Each sensor's trigger pin, echo pin, and max distance to ping. 
+  NewPing(53, 52, MAX_DISTANCE), // Back sensor #0
+  NewPing(51, 50, MAX_DISTANCE), // Right sensor #1
+  NewPing(49, 48, MAX_DISTANCE), // Front sensor #2
+  NewPing(47, 46, MAX_DISTANCE), // Left sensor #3
+  NewPing(45, 44, MAX_DISTANCE)  // Top sensor #4
+};
 
-#define echoBack 52    // Echo Pin for sensor # 1
-#define echoRight 50    // Echo Pin for sensor # 2
-#define echoFront 48    // Echo Pin for sensor # 3
-#define echoLeft 46    // Echo Pin for sensor # 4
-#define echoTop 44    // Echo Pin for sensor # 5
-
-#define maxDistens 400 // The max distens it wil se
 
 #define ledPinLeft 39
 #define ledPinFront 41
@@ -30,18 +29,7 @@
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin (9600);
-  pinMode(trigPinBack, OUTPUT);
-  pinMode(trigPinRight, OUTPUT);
-  pinMode(trigPinFront, OUTPUT);
-  pinMode(trigPinLeft, OUTPUT);
-  pinMode(trigPinTop, OUTPUT);
-
-  pinMode(echoBack, INPUT);
-  pinMode(echoRight, INPUT);
-  pinMode(echoFront, INPUT);
-  pinMode(echoLeft, INPUT);
-  pinMode(echoTop, INPUT);
+  Serial.begin (115200);
 
   // Led inikator
   pinMode(ledPinLeft, OUTPUT);
